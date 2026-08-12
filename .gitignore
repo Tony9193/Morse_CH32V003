@@ -1,0 +1,12 @@
+# 工具/会话元数据
+.reasonix/
+
+# 官方 EVT 例程包与解压临时目录
+CH32V003EVT.ZIP
+EVT_tmp/
+
+# 固件编译产物
+firmware/Morse_CH32V003/build/
+firmware/Morse_CH32V003/release/
+firmware/Morse_CH32V003/test_host/*.exe
+*.o
