@@ -32,6 +32,7 @@
       │  └─ config/   配置层（所有魔法数字集中于此）
       ├─ Vendor/                            # WCH 官方外设库与启动文件
       ├─ build.sh / build.bat               # 命令行构建脚本
+      ├─ release/                           # 预构建可烧录固件（.hex/.bin，无需编译直接烧）
       └─ test_host/test_morse.c             # 莫尔斯核心的 PC 端单元测试
 ```
 
@@ -63,6 +64,19 @@ bash build.sh bringup    # 板卡 bring-up 自检固件（LED 流水/按键回�
 ```
 
 产物输出到 `build/Morse_CH32V003.hex / .bin`。
+
+### 预构建固件（无需编译，直接烧录）
+
+不想装工具链可直接下载 `firmware/Morse_CH32V003/release/` 里已构建好的固件：
+
+| 文件 | 用途 | 开机侧音音量 |
+|---|---|---|
+| `Morse_CH32V003_NORMAL.hex/.bin` | 正式莫尔斯解析（默认） | 50% |
+| `Morse_CH32V003_VOL0.hex/.bin` | 正式版 · 开机静音 | **0%（静音）** |
+| `Morse_CH32V003_VOL20.hex/.bin` | 正式版 · 低音量 | **20%** |
+| `Morse_CH32V003_BRINGUP.hex/.bin` | 板卡自检（流水灯/按键回显/ADC 打印） | — |
+
+> 音量差异仅来自 `app_config.h` 的 `CFG_VOLUME_DEFAULT_PCT`，运行中仍可用串口 `V<n>`（n=0~100）实时调整；CH32V003 无 EEPROM，掉电回到烧录时的默认值。烧录步骤见 `release/烧录说明.md`。
 
 ### 单元测试（纯 C，PC 端）
 

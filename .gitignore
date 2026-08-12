@@ -5,8 +5,7 @@
 CH32V003EVT.ZIP
 EVT_tmp/
 
-# 固件编译产物
+# 固件编译中间产物（release/ 为可烧录成品，纳入版本管理）
 firmware/Morse_CH32V003/build/
-firmware/Morse_CH32V003/release/
 firmware/Morse_CH32V003/test_host/*.exe
 *.o
